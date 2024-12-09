@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
       hobbies: ['playing football', 'playing chess', 'cycling']
   }
 
-  res.render('home', { data: data });
+  res.render('index', { data: data });
 });
 
 

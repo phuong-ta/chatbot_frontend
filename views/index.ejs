@@ -1,25 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home Page</title>
-    <style type="text/css" media="screen">
-        body {
-            background-color: skyblue;
-            text-decoration-color: white;
-            font-size: 5em;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File List</title>
 </head>
-
 <body>
-    Hobbies of <%=data.name%> are:<br />
-
-        <ul>
-            <% data.hobbies.forEach((item)=>{%>
-                <li>
-                    <%=item%>
-                </li>
-                <%});%>
-        </ul>
+    <h1>List of Files</h1>
+    <ul>
+        <% dataFiles.forEach(file => { %>
+            <li><%= file %></li>
+        <% }) %>
+    </ul>
 </body>
 </html>

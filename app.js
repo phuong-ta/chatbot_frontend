@@ -1,37 +1,29 @@
 const express = require('express');
+const axios = require('axios');
+const path = require('path');
 
-
-// Next initialize the application
 const app = express();
+const PORT = 3000;
 
-// Set EJS as templating engine
+// Set EJS as the template engine
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
+// Route to fetch data from FastAPI and render it
+app.get('/', async (req, res) => {
+  try {
+      const apiUrl = 'https://chatbot-backend-260287853257.europe-north1.run.app/list_files'; // FastAPI endpoint
+      const response = await axios.get(apiUrl); // Fetch data from FastAPI
+      const dataFiles = response.data.data_files;
 
-
-// Route to call the API and render the data 
-app.get('/', async (req, res) => { 
-  try { 
-    // Create the URL with the provided date 
-    const backend_url ="https://chatbot-backend-260287853257.europe-north1.run.app/list_files"
-    // Call the API with GET method 
-    const response = await axios.get(backend_url); 
-    // Extract the EUR_per_kWh values into a list 
-    const prices = response.data.map(item => item.EUR_per_kWh); 
-    // Pass data into the render method 
-    res.render('prices', { prices }); 
-  } catch (error) { 
-    console.error('Error fetching data from API:', error); 
-    res.status(500).send('Error fetching data from API'); 
-  } 
+      res.render('index', { dataFiles }); // Pass data to the template
+  } catch (error) {
+      console.error('Error fetching API data:', error.message);
+      res.status(500).send('Internal Server Error');
+  }
 });
 
-
-
-
-
-
 // Start the server
-app.listen(3000, () => {
-  console.log('Server started on port 3000');
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });

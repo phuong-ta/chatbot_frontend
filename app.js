@@ -9,8 +9,14 @@ const PORT = 3000;
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+
+// index page
+app.get('/', function(req, res) {
+  res.render('index');
+});
+
 // Route to fetch data from FastAPI and render it
-app.get('/', async (req, res) => {
+app.get('/index', async (req, res) => {
   try {
       const apiUrl = 'https://chatbot-backend-260287853257.europe-north1.run.app/list_files'; // FastAPI endpoint
       const response = await axios.get(apiUrl); // Fetch data from FastAPI

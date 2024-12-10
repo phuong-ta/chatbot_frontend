@@ -6,6 +6,11 @@
     <title>File List</title>
 </head>
 <body>
-    <h1>Index Files</h1>
+    <h1>List of Files</h1>
+    <ul>
+        <% dataFiles.forEach(file => { %>
+            <li><%= file %></li>
+        <% }) %>
+    </ul>
 </body>
 </html>

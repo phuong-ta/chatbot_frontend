@@ -12,7 +12,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // index page
 app.get('/', function(req, res) {
-  res.render('index');
+  res.render('pages/index');
 });
 
 // Route to fetch data from FastAPI and render it
@@ -22,7 +22,7 @@ app.get('/index', async (req, res) => {
       const response = await axios.get(apiUrl); // Fetch data from FastAPI
       const dataFiles = response.data.data_files;
 
-      res.render('index', { dataFiles }); // Pass data to the template
+      res.render('demo', { dataFiles }); // Pass data to the template
   } catch (error) {
       console.error('Error fetching API data:', error.message);
       res.status(500).send('Internal Server Error');

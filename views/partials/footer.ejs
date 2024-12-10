@@ -1,0 +1,20 @@
+
+<footer class=" text-center fixed-bottom container mb-3 ml-2 mr-2">
+    <div class="input-group">
+        <textarea class="form-control border border-success focus-ring focus-ring-success"
+                  placeholder="Type your message"></textarea>
+        <button class="btn btn-outline-success"><i class="bi bi-send-fill"></i></button>
+    </div>
+</footer>
+
+<!-- Auto-Resizing Script -->
+<script>
+    const textarea = document.querySelector('textarea');
+
+    textarea.addEventListener('input', function () {
+        // Reset the height to calculate new height properly
+        this.style.height = 'auto';
+        // Adjust the height according to the scroll height
+        this.style.height = this.scrollHeight + 'px';
+    });
+</script>
